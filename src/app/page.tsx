@@ -1,24 +1,12 @@
-"use client";
-
 import { client } from "@/libs/client";
-import { motion } from "framer-motion";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
 import { Works } from "@/components/Works";
+import { Contact } from "@/components/Contact";
 
-// microCMSから返ってくるスキルデータの型を定義
-type Skill = {
-  id: string;
-  name: string;
-  // 他にlogoなどのフィールドがあればここにも定義
-};
 
 export default async function Home() {
-  // microCMSから'skills'エンドポイントのデータを取得
-  const { contents } = await client.get<{ contents: Skill[] }>({
-    endpoint: "skills",
-  });
 
   return (
     <>
@@ -26,6 +14,7 @@ export default async function Home() {
       <About />
       <Skills />
       <Works />
+      <Contact />
     </>
   );
 }

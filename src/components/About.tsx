@@ -15,9 +15,9 @@ export const About = async () => {
   const profile = await client.get<Profile>({ endpoint: "profile" });
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-gray-100 text-gray-900">
+    <section id="about" className="py-20 md:py-32 bg-[#252526]">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-8">About Me</h2>
+        <h2 className="text-3xl font-bold text-[#d4d4d4] mb-8">About Me</h2>
         <Image
           src={profile.avatar.url}
           width={120}
@@ -25,10 +25,12 @@ export const About = async () => {
           alt="avatar"
           className="rounded-full inline-block"
         />
-        <h3 className="text-2xl font-semibold mt-4">{profile.name}</h3>
+        <h3 className="text-2xl font-semibold text-[#d4d4d4] mt-4">
+          {profile.name}
+        </h3>
         <div
           dangerouslySetInnerHTML={{ __html: profile.bio }}
-          className="prose mt-4 mx-auto"
+          className="prose prose-invert mt-4 mx-auto"
         />
       </div>
     </section>
