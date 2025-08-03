@@ -1,31 +1,39 @@
 import { client } from "@/libs/client";
 import styles from "@/styles/prose.module.css";
+import type { Metadata } from "next";
 import Link from "next/link";
-// 'works'エンドポイントの型定義（リッチエディタや参照コンテンツも追加）
-type Work = {
-  id: string;
-  title: string;
-  thumbnail: {
-    url: string;
-    height: number;
-    width: number;
-  };
-  description: string; // リッチエディタ
-  skills: {
-    // コンテンツ参照
-    id: string;
-    name: string;
-    logo?: { url: string };
-  }[];
-};
 
-type Props = {
+
+type PageProps = {
   params: {
     id: string;
   };
 };
 
-export default async function WorkDetail({ params }: Props) {
+type Work = {
+  id: string;
+  title: string;
+  description: string;
+  skills: {
+    id: string;
+    name: string;
+  }[];
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const work = await client.get<Work>({
+    endpoint: "works",
+    contentId: params.id,
+  });
+
+  return {
+    title: `${work.title} | Niwa Portfolio`,
+    description: `実績「${work.title}」の詳細ページです。`,
+  };
+}
+
+
+export default async function WorkDetail({ params }: PageProps) {
   const work = await client.get<Work>({
     endpoint: "works",
     contentId: params.id,
@@ -38,7 +46,6 @@ export default async function WorkDetail({ params }: Props) {
           {work.title}
         </h1>
 
-        {/* 使用スキルの表示 */}
         <div className="flex flex-wrap gap-3 my-6 border-y border-gray-700 py-4">
           {work.skills.map((skill) => (
             <span
@@ -49,18 +56,20 @@ export default async function WorkDetail({ params }: Props) {
             </span>
           ))}
         </div>
+
         <div
-          className={`${styles.content} mt-8`} // 2. 作成したCSSのクラスを適用
+          className={`${styles.content} mt-8`}
           dangerouslySetInnerHTML={{
             __html: work.description,
           }}
         />
+
         <div className="mt-12 text-center">
           <Link
             href="/#works"
             className="inline-block border border-[#383838] text-[#d4d4d4] py-3 px-8 rounded-lg hover:bg-[#333333] transition-colors"
           >
-            ← Products一覧へ戻る
+            ← Works一覧へ戻る
           </Link>
         </div>
       </div>
