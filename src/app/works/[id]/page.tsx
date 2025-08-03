@@ -4,12 +4,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
-
 type Work = {
   id: string;
   title: string;
@@ -20,7 +14,12 @@ type Work = {
   }[];
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
   const work = await client.get<Work>({
     endpoint: "works",
     contentId: params.id,
@@ -33,7 +32,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 
-export default async function WorkDetail({ params }: PageProps) {
+export default async function WorkDetail({
+  params,
+}: {
+  params: { id: string };
+}) {
   const work = await client.get<Work>({
     endpoint: "works",
     contentId: params.id,
