@@ -13,12 +13,23 @@ type Work = {
   }[];
 };
 
-
-export async function generateMetadata({
-  params,
-}: {
+type Props = {
   params: { id: string };
-}): Promise<Metadata> {
+};
+
+// ビルド時に静的生成するパスをNext.jsに伝える
+export async function generateStaticParams() {
+  const { contents } = await client.get<{ contents: Work[] }>({
+    endpoint: "works",
+    queries: { fields: 'id' } // idのみを取得して効率化
+  });
+
+  return contents.map((work) => ({
+    id: work.id,
+  }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const work = await client.get<Work>({
     endpoint: "works",
     contentId: params.id,
@@ -30,15 +41,10 @@ export async function generateMetadata({
   };
 }
 
-
-export default async function WorkDetail({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+export default async function WorkDetail({ params }: Props) {
   const work = await client.get<Work>({
     endpoint: "works",
-    contentId: id, 
+    contentId: params.id,
   });
 
   return (
