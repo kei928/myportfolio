@@ -12,7 +12,7 @@ export const Preloader = () => {
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
       <h1 className="text-4xl md:text-6xl font-bold text-white">
-        Welcome to Niwa's Portfolio
+        Welcome to my portfolio
       </h1>
     </motion.div>
   );

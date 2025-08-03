@@ -1,7 +1,6 @@
 "use client"; 
 
 import { useState, useEffect } from "react";
-import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { AnimatePresence } from "framer-motion"; 
 
@@ -15,10 +14,6 @@ const notoSansJp = Noto_Sans_JP({
   weight: ["400", "700"],
 });
 
-// export const metadata: Metadata = {
-//   title: "Niwa Portfolio",
-//   description: "Webデベロッパーのポートフォリオサイトです。",
-// };
 
 export default function RootLayout({
   children,

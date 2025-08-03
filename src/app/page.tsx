@@ -1,4 +1,3 @@
-import { client } from "@/libs/client";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
