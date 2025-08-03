@@ -3,7 +3,6 @@ import styles from "@/styles/prose.module.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-
 type Work = {
   id: string;
   title: string;
@@ -27,19 +26,19 @@ export async function generateMetadata({
 
   return {
     title: `${work.title} | Niwa Portfolio`,
-    description: `実績「${work.title}」の詳細ページです。`,
+    description: `products「${work.title}」の詳細ページです。`,
   };
 }
 
 
 export default async function WorkDetail({
-  params,
+  params: { id },
 }: {
   params: { id: string };
 }) {
   const work = await client.get<Work>({
     endpoint: "works",
-    contentId: params.id,
+    contentId: id, 
   });
 
   return (
@@ -72,7 +71,7 @@ export default async function WorkDetail({
             href="/#works"
             className="inline-block border border-[#383838] text-[#d4d4d4] py-3 px-8 rounded-lg hover:bg-[#333333] transition-colors"
           >
-            ← Works一覧へ戻る
+            ← Products一覧へ戻る
           </Link>
         </div>
       </div>
