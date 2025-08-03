@@ -17,11 +17,11 @@ type Props = {
   params: { id: string };
 };
 
-// ビルド時に静的生成するパスをNext.jsに伝える
+
 export async function generateStaticParams() {
   const { contents } = await client.get<{ contents: Work[] }>({
     endpoint: "works",
-    queries: { fields: 'id' } // idのみを取得して効率化
+    queries: { fields: 'id' } 
   });
 
   return contents.map((work) => ({

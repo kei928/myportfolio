@@ -22,7 +22,7 @@ export const Header = () => {
             </li>
             <li>
               <Link href="/#works" className="hover:text-[#569cd6]">
-                Works
+                Products
               </Link>
             </li>
             <li>
