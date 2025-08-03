@@ -32,13 +32,18 @@ export default async function WorkDetail({ params }: Props) {
   });
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold">{work.title}</h1>
+    // ↓ 全体を囲むdivにcontainerクラスを追加
+    <div className="container mx-auto p-8 bg-white rounded-lg shadow-md">
+      <h1 className="text-black font-bold ">{work.title}</h1>
 
       {/* 使用スキルの表示 */}
-      <div className="flex flex-wrap gap-2 mt-4">
+      <div className="flex flex-wrap gap-3 mt-6">
         {work.skills.map((skill) => (
-          <span key={skill.id} className="bg-gray-200 text-sm px-3 py-1 rounded-full">
+          // ↓ spanタグのクラスを修正
+          <span
+            key={skill.id}
+            className="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full"
+          >
             {skill.name}
           </span>
         ))}
@@ -49,7 +54,7 @@ export default async function WorkDetail({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: work.description,
         }}
-        className="prose mt-8"
+        className="prose mt-8 text-black"
       />
     </div>
   );

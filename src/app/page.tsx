@@ -1,4 +1,8 @@
+"use client";
+
 import { client } from "@/libs/client";
+import { motion } from "framer-motion";
+import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
 import { Works } from "@/components/Works";
@@ -18,6 +22,7 @@ export default async function Home() {
 
   return (
     <>
+      <Hero /> 
       <About />
       <Skills />
       <Works />

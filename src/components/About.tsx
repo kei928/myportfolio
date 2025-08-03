@@ -15,7 +15,7 @@ export const About = async () => {
   const profile = await client.get<Profile>({ endpoint: "profile" });
 
   return (
-    <section id="about" className="py-20 md:py-32">
+    <section id="about" className="py-20 md:py-32 bg-gray-100 text-gray-900">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-8">About Me</h2>
         <Image
