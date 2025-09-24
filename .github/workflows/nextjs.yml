@@ -31,7 +31,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Node.jsのセットアップなどのステップ
+      # Node.jsのセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' 
+      # 依存関係のインストール
+      - name: Install dependencies
+        run: npm install
 
       - name: Build # ビルドコマンドを実行するステップ
         run: npm run build # 'next build'など、ご自身のビルドコマンド
