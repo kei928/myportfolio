@@ -36,6 +36,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18' 
+
       # 依存関係のインストール
       - name: Install dependencies
         run: npm install
