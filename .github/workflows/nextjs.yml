@@ -31,22 +31,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Node.jsのセットアップ
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' 
+          node-version: '18'
 
-      # 依存関係のインストール
       - name: Install dependencies
         run: npm install
 
       - name: Build # ビルドコマンドを実行するステップ
-        run: npm run build # 'next build'など、ご自身のビルドコマンド
+        run: npm run build 
         env:
           NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN: ${{ secrets.NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN }}
-          # 他にも必要な環境変数があればここに追加します
-          # 例: API_KEY: ${{ secrets.API_KEY }}
+          NEXT_PUBLIC_MICROCMS_API_KEY: ${{ secrets.NEXT_PUBLIC_MICROCMS_API_KEY }}
+
   # Deployment job
   deploy:
     environment:
