@@ -17,6 +17,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${notoSansJp.className} bg-[#1e1e1e] text-[#d4d4d4]`}>
         <ClientLayout>{children}</ClientLayout>
+         <Analytics />
       </body>
     </html>
   );
